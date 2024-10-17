@@ -13,6 +13,8 @@
 #include "timer.h"
 #include "PWM.h"
 
+
+
 int main(void) {
 
     //Initialisation oscillateur
@@ -21,7 +23,7 @@ int main(void) {
     InitTimer1();
     InitTimer23();
     InitPWM();
-    PWMSetSpeed(10);
+    PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
 
     // Configuration des input et output (IO)
 
