@@ -94,13 +94,16 @@ void PWMUpdateSpeed()
     }
 }
 
+//rajouter les vitesses extremes gauche et droites commande et consignes
+//rajouter les trucs Grafcet
+
 void PWMSetSpeedConsigne(float vitesseEnPourcents, char Type_Moteur){
     if (Type_Moteur == MOTEUR_GAUCHE)
     {
         robotState.vitesseGaucheConsigne = vitesseEnPourcents;
     }
-    else
+    if (Type_Moteur == MOTEUR_DROIT)
     {
-        robotState.vitesseDroiteConsigne = vitesseEnPourcents;       
+        robotState.vitesseDroiteConsigne = -vitesseEnPourcents;       
     }
 }

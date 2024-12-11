@@ -8,6 +8,8 @@
 
 //Initialisation d?un timer 16 bits
 
+unsigned long timestamp = 0;
+
 void SetFreqTimer4(float freq)
     { 
         T4CONbits.TCKPS = 0b00; //00 = 1:1 prescaler value
@@ -33,20 +35,27 @@ void SetFreqTimer4(float freq)
     }
 
 
+
+
 void InitTimer4(void) {
     T4CONbits.TON = 0;
     T4CONbits.TCS = 0; 
-    SetFreqTimer4(10);
+    SetFreqTimer4(1000);
     IFS1bits.T4IF = 0; 
     IEC1bits.T4IE = 1; 
     T4CONbits.TON = 1; 
 }
-//Interruption du timer 1
+//Interruption du timer 4
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     IFS1bits.T4IF = 0;
     LED_ORANGE_1 = !LED_ORANGE_1;
+    
+    PWMUpdateSpeed();
+    OperatingSystemLoop();
+    
 
+    timestamp += 1;
 }
 
 void SetFreqTimer1(float freq)
@@ -86,7 +95,7 @@ void InitTimer1(void) {
     //PR1 = 0b1110101001100
     //PR1 = 0d7500
     //PR1 = 0d150000
-    SetFreqTimer1(250);
+    SetFreqTimer1(200);
     IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
     IEC0bits.T1IE = 1; // Enable Timer interrupt
     T1CONbits.TON = 1; // Enable Timer
@@ -96,7 +105,7 @@ void InitTimer1(void) {
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     IFS0bits.T1IF = 0;
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
-    //PWMUpdateSpeed();
+    ///PWMUpdateSpeed();
     ADC1StartConversionSequence();
 }
 //Initialisation d?un timer 32 bits

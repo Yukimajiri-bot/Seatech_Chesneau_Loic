@@ -23,7 +23,7 @@ void InitADC1(void){
     AD1CON2bits.VCFG = 0b000; // 000 : Voltage Reference = AVDD AVss
     AD1CON2bits.CSCNA = 1; // 1 : Enable Channel Scanning
     AD1CON2bits.CHPS = 0b00; // Converts CH0 only
-    AD1CON2bits.SMPI = 2; // 2+1 conversions successives avant interrupt
+    AD1CON2bits.SMPI = 4; // 2+1 conversions successives avant interrupt
     AD1CON2bits.ALTS = 0;
     AD1CON2bits.BUFM = 0;
     /************************************************************/
@@ -40,13 +40,17 @@ void InitADC1(void){
     //Configuration des ports
     /************************************************************/
     //ADC éutiliss : 8(B8)-9(B9)-10(B10)
+    ANSELBbits.ANSB0 = 1;
     ANSELBbits.ANSB8 = 1;
     ANSELBbits.ANSB9 = 1;
     ANSELBbits.ANSB10 = 1;
+    ANSELBbits.ANSB11 = 1;
     
+    AD1CSSLbits.CSS0=1;
     AD1CSSLbits.CSS8=1; // Enable AN8 for scan
     AD1CSSLbits.CSS9=1; // Enable AN9 for scan
-    AD1CSSLbits.CSS10=1; // Enable AN10 for scan
+    AD1CSSLbits.CSS10=1;
+    AD1CSSLbits.CSS11=1;
     
     /* Assign MUXA inputs */
     AD1CHS0bits.CH0SA = 0;// CH0SA bits ignored for CH0 +ve input selection
