@@ -67,7 +67,7 @@ int main(void) {
             volts = ((float) result [2])* 3.3 / 4096;
             robotState.distanceTelemetreDroit = 34 / volts - 5;
             volts = ((float) result [2])* 3.3 / 4096;
-            robotState.distanceTelemetreEDroit = 34 / volts - 5;
+            robotState.distanceTelemetreDroit = 34 / volts - 5;
 
             if (robotState.distanceTelemetreDroit < 20) {
                 LED_ROUGE_2 = !LED_ROUGE_2;
