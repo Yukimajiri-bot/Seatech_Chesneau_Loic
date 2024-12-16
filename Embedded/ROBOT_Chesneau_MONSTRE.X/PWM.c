@@ -72,6 +72,8 @@ void PWMUpdateSpeed()
         PDC1 = talon;
         SDC1 = -robotState.vitesseGaucheCommandeCourante * PWMPER + talon;
     }
+    
+    
     if (robotState.vitesseDroiteCommandeCourante < robotState.vitesseDroiteConsigne)
         
         robotState.vitesseDroiteCommandeCourante = Min(
@@ -92,6 +94,50 @@ void PWMUpdateSpeed()
         PDC2 = talon;
         SDC2 = -robotState.vitesseDroiteCommandeCourante * PWMPER + talon;
     }
+
+/*    
+        if (robotState.vitesseDroiteCommandeCourante < robotState.vitesseDroiteConsigne)
+        
+        robotState.vitesseDroiteCommandeCourante = Min(
+        robotState.vitesseDroiteCommandeCourante + acceleration,
+        robotState.vitesseDroiteConsigne);
+    if (robotState.vitesseDroiteCommandeCourante > robotState.vitesseDroiteConsigne)
+        
+        robotState.vitesseDroiteCommandeCourante = Max(
+        robotState.vitesseDroiteCommandeCourante - acceleration,
+        robotState.vitesseDroiteConsigne);
+    if (robotState.vitesseDroiteCommandeCourante >= 0)
+    {
+        PDC2 = robotState.vitesseDroiteCommandeCourante * PWMPER + talon;
+        SDC2 = talon;
+    }
+    else
+    {
+        PDC2 = talon;
+        SDC2 = -robotState.vitesseDroiteCommandeCourante * PWMPER + talon;
+    }
+    
+        if (robotState.vitesseDroiteCommandeCourante < robotState.vitesseDroiteConsigne)
+        
+        robotState.vitesseDroiteCommandeCourante = Min(
+        robotState.vitesseDroiteCommandeCourante + acceleration,
+        robotState.vitesseDroiteConsigne);
+    if (robotState.vitesseDroiteCommandeCourante > robotState.vitesseDroiteConsigne)
+        
+        robotState.vitesseDroiteCommandeCourante = Max(
+        robotState.vitesseDroiteCommandeCourante - acceleration,
+        robotState.vitesseDroiteConsigne);
+    if (robotState.vitesseDroiteCommandeCourante >= 0)
+    {
+        PDC2 = robotState.vitesseDroiteCommandeCourante * PWMPER + talon;
+        SDC2 = talon;
+    }
+    else
+    {
+        PDC2 = talon;
+        SDC2 = -robotState.vitesseDroiteCommandeCourante * PWMPER + talon;
+    }
+ */
 }
 
 //rajouter les vitesses extremes gauche et droites commande et consignes
