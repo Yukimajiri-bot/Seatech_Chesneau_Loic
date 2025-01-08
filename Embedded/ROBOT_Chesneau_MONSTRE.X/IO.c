@@ -32,7 +32,7 @@ void InitIO()
     _TRISA10 = 0; // LED Rouge 2 
     _TRISH3 = 0; // LED Verte 2  _
     
-
+    _TRISH1 = 0;
     
     //****** Moteurs ************************
 
