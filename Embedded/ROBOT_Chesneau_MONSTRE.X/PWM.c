@@ -5,7 +5,7 @@
 #include "Robot.h"
 #define PWMPER 24.0
 
-float acceleration = 1;
+float acceleration = 0;
 
 void InitPWM(void) {
     PTCON2bits.PCLKDIV = 0b000; //Divide by 1

@@ -15,6 +15,7 @@
 #include "Robot.h"
 #include "timer.h"
 #include "main.h"
+#include "uart.h"
 
 unsigned int valueTelemetreEGauche = 0;
 unsigned int valueTelemetreGauche = 0;
@@ -34,7 +35,8 @@ int main(void) {
 
     InitPWM();
 
-
+    InitUART();
+    
     InitADC1();
 
     // Configuration des input et output (IO)
@@ -48,13 +50,14 @@ int main(void) {
     LED_BLEUE_2 = 1;
     LED_ORANGE_2 = 1;
     LED_ROUGE_2 = 1;
-    LED_VERTE_2 = 1;
+    LED_VERTE_2 = 1; 
 
     // Boucle Principale
 
 
     while (1) {
-
+        SendMessageDirect((unsigned char*) "BonDour", 7);
+//        __delay32(40000000);
         if (ADCIsConversionFinished() == 1) {
             ADCClearConversionFinishedFlag();
             unsigned int * result = ADCGetResult();
