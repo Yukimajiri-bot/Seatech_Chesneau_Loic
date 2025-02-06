@@ -16,6 +16,7 @@
 #include "timer.h"
 #include "main.h"
 #include "uart.h"
+#include "CB_TX1.h"
 
 unsigned int valueTelemetreEGauche = 0;
 unsigned int valueTelemetreGauche = 0;
@@ -56,8 +57,11 @@ int main(void) {
 
 
     while (1) {
-        SendMessageDirect((unsigned char*) "BonDour", 7);
-//        __delay32(40000000);
+        //SendMessageDirect((unsigned char*) "BonDour", 7);
+        __delay32(4000000);
+        SendMessage((unsigned char*)"BonDour", 7);
+        
+        
         if (ADCIsConversionFinished() == 1) {
             ADCClearConversionFinishedFlag();
             unsigned int * result = ADCGetResult();
