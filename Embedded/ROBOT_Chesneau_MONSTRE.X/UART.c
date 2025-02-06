@@ -17,7 +17,7 @@ void InitUART(void)
     IEC0bits.U1TXIE = 1; // Disable UART Tx interrupt
     U1STAbits.URXISEL = 0; // Interrupt after one RX character is received;
     IFS0bits.U1RXIF = 0; // clear RX interrupt flag
-    IEC0bits.U1RXIE = 0; // Disable UART Rx interrupt
+    IEC0bits.U1RXIE = 1; // Disable UART Rx interrupt
     U1MODEbits.UARTEN = 1; // Enable UART
     U1STAbits.UTXEN = 1; // Enable UART Tx
 }
@@ -32,7 +32,7 @@ void SendMessageDirect(unsigned char* message, int length)
 }
 
 //Interruption en mode loopback
-void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void) 
+void __attribute__((interrupt, no_auto_psv)) _U1R1XInterrupt(void) 
 {
     
         IFS0bits.U1RXIF = 0; // clear RX interrupt flag

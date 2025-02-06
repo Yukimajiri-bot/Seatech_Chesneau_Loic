@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <xc.h>
+#include <libpic30.h>
 #include "ChipConfig.h"
 #include "IO.h"
 #include "PWM.h"
@@ -15,8 +16,9 @@
 #include "Robot.h"
 #include "timer.h"
 #include "main.h"
-#include "uart.h"
+//#include "uart.h"
 #include "CB_TX1.h"
+#include "CB_RX1.h"
 
 unsigned int valueTelemetreEGauche = 0;
 unsigned int valueTelemetreGauche = 0;
@@ -58,8 +60,16 @@ int main(void) {
 
     while (1) {
         //SendMessageDirect((unsigned char*) "BonDour", 7);
-        __delay32(4000000);
-        SendMessage((unsigned char*)"BonDour", 7);
+        //__delay32(4000000);
+        //SendMessage((unsigned char*)"BonDour", 7);
+        
+        int i;
+        for(i=0; i< CB_RX1_GetDataSize(); i++)
+            {
+            unsigned char c = CB_RX1_Get();
+            SendMessage(&c,1);
+            }
+        __delay32(10000);
         
         
         if (ADCIsConversionFinished() == 1) {
